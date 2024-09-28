@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sunny_Side_Up.MainPage"
+             BackgroundColor="#FEF3C7"
+             Padding="10">
+    <ScrollView>
+        <StackLayout Spacing="20">
+            <!-- Search Bar -->
+            <Grid>
+                <Entry x:Name="CitySearchEntry"
+                       Placeholder="Search for a city..."
+                       BackgroundColor="White"
+                       TextColor="#7D4C00"
+                       HeightRequest="40"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="Center"
+                       Margin="0,0,40,0"/>
+                <Image Source="search_icon.png"
+                       WidthRequest="20"
+                       HeightRequest="20"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSearchButtonClicked"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+
+            <!-- Main Weather Card -->
+            <Frame x:Name="WeatherCard" BackgroundColor="#FEF3C7" Padding="20" HasShadow="True" CornerRadius="20">
+                <StackLayout>
+                    <Label x:Name="CityLabel" FontSize="36" TextColor="#7D4C00" FontAttributes="Bold"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="TemperatureLabel" FontSize="30" TextColor="#B45309" VerticalOptions="Center"/>
+                        <Image x:Name="WeatherIcon" WidthRequest="50" HeightRequest="50" Grid.Column="1"/>
+                    </Grid>
+                    <Label x:Name="WeatherDescription" FontSize="24" TextColor="#B45309" Margin="0,10,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Daily Forecast Card -->
+            <Frame Padding="10">
+                <StackLayout>
+                    <Label Text="Daily Forecast" FontSize="18" FontAttributes="Bold" TextColor="#7D4C00"/>
+                    <ScrollView Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" Spacing="10" x:Name="DailyForecastContainer">
+                            <!-- Daily forecast data will be populated here -->
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </Frame>
+
+            <!-- Additional Weather Information Section -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- UV Index -->
+                <Frame Padding="10" Grid.Column="0" HasShadow="True" BackgroundColor="#FEF3C7" CornerRadius="15">
+                    <StackLayout>
+                        <Label Text="UV Index" FontSize="12" TextColor="#7D4C00"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="https://w7.pngwing.com/pngs/589/196/png-transparent-light-radiation-rays-sun-ultraviolet-uv-weather-the-weather-is-nice-today-icon-thumbnail.png" WidthRequest="44" HeightRequest="24"/>
+                            <Label x:Name="UVIndexLabel" FontSize="24" FontAttributes="Bold" TextColor="#7D4C00" Grid.Column="1"/>
+                        </Grid>
+                        <Label Text="High" FontSize="12" TextColor="#F59E0B"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Humidity -->
+                <Frame Padding="10" Grid.Column="1" HasShadow="True" BackgroundColor="#FEF3C7" CornerRadius="15">
+                    <StackLayout>
+                        <Label Text="Humidity" FontSize="12" TextColor="#7D4C00"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="https://png.pngtree.com/element_our/png/20181210/humidity-vector-icon-png_266867.jpg" WidthRequest="44" HeightRequest="24"/>
+                            <Label x:Name="HumidityLabel" FontSize="24" FontAttributes="Bold" TextColor="#7D4C00" Grid.Column="1"/>
+                        </Grid>
+                        <Label Text="Normal" FontSize="12" TextColor="#F59E0B"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Wind -->
+                <Frame Padding="10" Grid.Column="0" Grid.Row="1" HasShadow="True" BackgroundColor="#FEF3C7" CornerRadius="15">
+                    <StackLayout>
+                        <Label Text="Wind" FontSize="12" TextColor="#7D4C00"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="https://w7.pngwing.com/pngs/450/975/png-transparent-wind-desktop-wind-cloud-fictional-character-cartoon.png" WidthRequest="44" HeightRequest="24"/>
+                            <Label x:Name="WindLabel" FontSize="24" FontAttributes="Bold" TextColor="#7D4C00" Grid.Column="1"/>
+                        </Grid>
+                        <Label Text="East" FontSize="12" TextColor="#F59E0B"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Rainfall -->
+                <Frame Padding="10" Grid.Column="1" Grid.Row="1" HasShadow="True" BackgroundColor="#FEF3C7" CornerRadius="15">
+                    <StackLayout>
+                        <Label Text="Rainfall" FontSize="12" TextColor="#7D4C00"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="https://static.vecteezy.com/system/resources/previews/001/192/764/non_2x/rain-png.png" WidthRequest="44" HeightRequest="24"/>
+                            <Label x:Name="RainfallLabel" FontSize="24" FontAttributes="Bold" TextColor="#7D4C00" Grid.Column="1"/>
+                        </Grid>
+                        <Label Text="in last hour" FontSize="12" TextColor="#F59E0B"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
